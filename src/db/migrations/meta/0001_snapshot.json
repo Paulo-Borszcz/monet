@@ -1,0 +1,237 @@
+{
+  "id": "fa1d3ee7-d0c2-4c3b-af0e-83b14dbf08d2",
+  "prevId": "a71ffb55-8aa7-49c2-bac3-40d3947f10d6",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "branch": {
+      "name": "branch",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "branch_number": {
+          "name": "branch_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "switch_ip": {
+          "name": "switch_ip",
+          "type": "varchar(15)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ata_ip": {
+          "name": "ata_ip",
+          "type": "varchar(15)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "operator": {
+          "name": "operator",
+          "type": "operator_type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "technician_id": {
+          "name": "technician_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "branch_technician_id_technician_id_fk": {
+          "name": "branch_technician_id_technician_id_fk",
+          "tableFrom": "branch",
+          "tableTo": "technician",
+          "columnsFrom": [
+            "technician_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "branch_name_unique": {
+          "name": "branch_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
+        "branch_branch_number_unique": {
+          "name": "branch_branch_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "branch_number"
+          ]
+        },
+        "branch_switch_ip_unique": {
+          "name": "branch_switch_ip_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "switch_ip"
+          ]
+        },
+        "branch_ata_ip_unique": {
+          "name": "branch_ata_ip_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "ata_ip"
+          ]
+        }
+      }
+    },
+    "downtime": {
+      "name": "downtime",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "branch_id": {
+          "name": "branch_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ip_type": {
+          "name": "ip_type",
+          "type": "ip_type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "downtime_status",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'open'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "downtime_branch_id_branch_id_fk": {
+          "name": "downtime_branch_id_branch_id_fk",
+          "tableFrom": "downtime",
+          "tableTo": "branch",
+          "columnsFrom": [
+            "branch_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "technician": {
+      "name": "technician",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "discord_user_id": {
+          "name": "discord_user_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "technician_discord_user_id_unique": {
+          "name": "technician_discord_user_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "discord_user_id"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {
+    "downtime_status": {
+      "name": "downtime_status",
+      "values": {
+        "open": "open",
+        "closed": "closed"
+      }
+    },
+    "ip_type": {
+      "name": "ip_type",
+      "values": {
+        "switch": "switch",
+        "ata": "ata"
+      }
+    },
+    "operator_type": {
+      "name": "operator_type",
+      "values": {
+        "ALT": "ALT",
+        "ACT": "ACT"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

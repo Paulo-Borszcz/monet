@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1741261140218,
+      "tag": "0000_minor_onslaught",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1741261296905,
+      "tag": "0001_nostalgic_satana",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1741268073433,
+      "tag": "0002_free_johnny_storm",
+      "breakpoints": true
+    }
+  ]
+}

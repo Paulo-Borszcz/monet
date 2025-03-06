@@ -1,0 +1,38 @@
+{
+  "name": "monitor-bot",
+  "version": "1.0.0",
+  "description": "Bot de monitoramento de IPs com Discord e PostgreSQL",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
+    "generate:migrations": "drizzle-kit generate:pg --config drizzle.config.ts",
+    "migrate": "drizzle-kit up:pg --config drizzle.config.ts",
+    "build": "tsc",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [],
+  "author": "Paulo Felipe Borszcz",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/rest": "^1.7.0",
+    "@types/node": "^20.0.0",
+    "axios": "^1.6.2",
+    "discord-api-types": "^0.37.0",
+    "discord.js": "^14.0.0",
+    "dotenv": "^16.0.0",
+    "drizzle-orm": "^0.29.0",
+    "ping": "^0.4.2",
+    "postgres": "^3.4.5",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/ping": "^0.2.0",
+    "drizzle-kit": "^0.20.18",
+    "eslint": "^8.0.0",
+    "nodemon": "^3.0.0",
+    "prettier": "^3.0.0"
+  }
+}
