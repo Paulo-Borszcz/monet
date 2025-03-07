@@ -68,9 +68,9 @@ export async function sendAlert(branchData: any, ipType: string) {
     const phoneNumber = managerData.phone.replace(/\D/g, "");
     let message = "";
     if (ipType === "ata") {
-      message = encodeURIComponent(`Olá, ${managerData.name}! O ATA da filial ${branchData.name} (Número: ${branchData.branchNumber}) está offline. Por gentileza, pdoeria reconectar o cabo de rede, por favor? Obrigado! 😊`);
+      message = encodeURIComponent(`Olá, ${managerData.name}! O ATA da filial ${branchData.name} (Número: FL ${branchData.branchNumber}) está offline. Por gentileza, pdoeria reconectar o cabo de rede, por favor? Obrigado! 😊`);
     } else {
-      message = encodeURIComponent(`Olá, ${managerData.name}! A filial ${branchData.name} (Número: ${branchData.branchNumber}) está offline. Por gentileza, poderia verificar a energia e enviar uma foto do rack? Obrigado! 😊`);
+      message = encodeURIComponent(`Olá, ${managerData.name}! A filial ${branchData.name} (Número: FL ${branchData.branchNumber}) está offline. Por gentileza, poderia verificar a energia e enviar uma foto do rack? Obrigado! 😊`);
     }
     whatsappLink = `https://web.whatsapp.com/send/?phone=${phoneNumber}&text=${message}`;
     if (whatsappLink.length > 512) {
