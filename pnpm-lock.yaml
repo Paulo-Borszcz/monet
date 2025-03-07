@@ -17,9 +17,6 @@ importers:
       axios:
         specifier: ^1.6.2
         version: 1.8.1
-      chalk:
-        specifier: ^5.4.1
-        version: 5.4.1
       discord-api-types:
         specifier: ^0.37.0
         version: 0.37.119
