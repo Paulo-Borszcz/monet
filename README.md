@@ -42,7 +42,7 @@ O **Monet** é um bot desenvolvido para monitorar o status de dispositivos de re
    pnpm install
    ```
 3. **Configure o Ambiente**:
-   Preencha o arquivo `.env` com as variáveis necessários, conforme o ``.env.example`
+   Preencha o arquivo `.env` com as variáveis necessários, conforme o `.env.example`
 4. **Execute as Migrações**:
    ```bash
    npx drizzle-kit generate:pg --config drizzle.config.ts
