@@ -1,92 +1,135 @@
 # Monet
 
-O **Monet** é um bot desenvolvido para monitorar o status de dispositivos de rede (SWITCH e ATA) em diversas filiais. Ele utiliza o Discord para enviar notificações em tempo real quando uma filial fica offline, permitindo que os técnicos responsáveis tomem as medidas necessárias para resolver o problema.
+Um bot de monitoramento de redes para Discord que verifica a conectividade de filiais, notifica sobre problemas e facilita a resposta a incidentes.
 
-## Funcionalidades
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-v5.8-blue.svg)
+![Discord.js](https://img.shields.io/badge/Discord.js-v14-7289da.svg)
+![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-v0.29-orange.svg)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v3.4-blue.svg)
 
-- **Monitoramento em Tempo Real**: Faz ping nos IPs dos dispositivos de rede (SWITCH e ATA) a cada 1 minuto.
-- **Notificações no Discord**:
-  - Envia alertas para um canal específico quando uma filial fica offline.
-  - Notifica os técnicos responsáveis por DM (mensagem direta) com informações detalhadas.
-- **Integração com WhatsApp**:
-  - Inclui um botão para contatar o gerente da filial via WhatsApp diretamente do Discord.
-- **Registro de Downtimes**:
-  - Armazena o histórico de quedas e recuperações no banco de dados PostgreSQL.
+## 📋 Recursos
 
-## Tecnologias Utilizadas
+- **Monitoramento em tempo real**: Verifica a conectividade de IPs de Switch e ATA em múltiplas filiais
+- **Alertas automatizados**: Notificações imediatas no Discord quando uma filial fica offline
+- **Integração com WhatsApp**: Cria links diretos para contatar gerentes de filiais
+- **Designação de técnicos**: Atribui responsabilidades com base em intervalos numéricos de filiais
+- **Registro de incidentes**: Acompanha tempo de inatividade e histórico de problemas
+- **Operação 24/7**: Monitoramento constante para minimizar o tempo de inatividade
 
-- **Node.js**: Ambiente de execução JavaScript.
-- **TypeScript**: Linguagem de programação para desenvolvimento seguro e escalável.
-- **Discord.js**: Biblioteca para interagir com a API do Discord.
-- **PostgreSQL**: Banco de dados para armazenar informações das filiais, técnicos e downtimes.
-- **Drizzle ORM**: ORM para gerenciar o banco de dados de forma eficiente.
-- **Ping**: Biblioteca para verificar a conectividade dos dispositivos de rede.
+## 🔧 Tecnologias
 
-## Configuração
+- **TypeScript**: Linguagem principal com tipagem estática
+- **Discord.js**: Interação com a API do Discord
+- **Drizzle ORM**: ORM para PostgreSQL com migrações e schemas tipados
+- **PostgreSQL**: Banco de dados relacional
+- **Ping**: Verificação de conectividade com sistemas remotos
+- **Node.js**: Ambiente de execução
+
+## ⚙️ Instalação
 
 ### Pré-requisitos
 
-- Node.js (v18 ou superior)
-- PostgreSQL (ou um banco de dados gerenciado, como Neon.tech)
-- Conta no Discord com permissão para criar um bot.
+- Node.js (v16+)
+- PostgreSQL
+- Conta Discord Developer
 
-### Passos para Configuração
+### Configuração
 
-1. **Clone o Repositório**:
-   ```bash
-   git clone https://github.com/Paulo-Borszcz/monet.git
-   cd monitor-de-filiais
-   ```
-2. **Instale as Dependências**:
-   ```bash
-   pnpm install
-   ```
-3. **Configure o Ambiente**:
-   Preencha o arquivo `.env` com as variáveis necessários, conforme o `.env.example`
-4. **Execute as Migrações**:
-   ```bash
-   npx drizzle-kit generate:pg --config drizzle.config.ts
-   npx drizzle-kit up:pg --config drizzle.config.ts
-   ```
-5. **Inicie o Bot**:
-   ```bash
-   pnpm start
-   ```
+1. Clone o repositório:
 
-## Como usar?
-
-### Comandos do Bot
-
-1. **/registrar-tecnico:** Registra um técnico responsável.
-2. **/adicionar-range:** Adiciona um range de responsabilidade para um técnico.
-3. **/listar-ranges:** Lista os ranges de responsabilidade de um técnico.
-
-### Notificações
-
-Quando uma filial fica offline, o bot envia:
-- Um **embed simplificado** no canal de notificações.
-- Um **embed detalhado** na DM do técnico responsável, com um botão para contatar o gerente via WhatsApp.
-
-Quando a filial volta ao normal, o bot envia uma notificação de recuperação.
-
-## Estrutura do Projeto
+```bash
+git clone https://github.com/Paulo-Borszcz/monet.git
 ```
-.
-├── src
-│   ├── bot
-│   │   ├── commands/          # Comandos do bot
-│   │   └── utils/             # Utilitários (embeds, notificações)
-│   ├── db
-│   │   ├── schema.ts         # Schema do banco de dados
-│   │   ├── connection.ts     # Conexão com o Banco de Dados
-│   │   └── migrations/        # Migrações geradas
-│   ├── services
-│   │   ├── monitor.ts        # Serviço de monitoramento
-│   │   └── alerts.ts         # Lógica de notificações
-│   └── index.ts              # Entry point do bot
-├── .env                      # Variáveis de ambiente
-├── drizzle.config.ts         # Configuração do Drizzle ORM
-├── package.json              # Dependências do projeto
-├── tsconfig.json             # TypeScript
-└── README.md                 # Documentação do projeto
+
+2. Instale as dependências:
+
+```bash
+pnpm install
 ```
+
+3. Configure as variáveis de ambiente criando um arquivo `.env` na raiz do projeto:
+
+```env
+DISCORD_TOKEN=seu_token_discord
+DATABASE_URL=postgresql://usuario:senha@localhost:5432/monitor_bot
+ALERT_CHANNEL_ID=id_do_canal_de_alertas
+CLIENT_ID=id_do_cliente_discord
+GUILD_ID=id_do_servidor_discord
+```
+
+4. Execute as migrações do banco de dados:
+
+```bash
+pnpm run generate:migrations
+pnpm run migrate
+```
+
+## 🚀 Uso
+
+### Iniciando o Bot
+
+```bash
+# Modo de desenvolvimento
+pnpm run dev
+
+# Modo de produção
+pnpm run build
+pnpm run start
+```
+
+### Comandos do Discord
+
+| Comando | Descrição |
+|---------|-----------|
+| `/registrar-tecnico` | Registra um novo técnico no sistema |
+| `/adicionar-range` | Adiciona um intervalo de filiais para um técnico |
+| `/listar-ranges` | Lista os intervalos atribuídos ao técnico atual |
+
+## 🧰 Arquitetura
+
+O projeto segue uma arquitetura modular:
+
+```
+src/
+├── bot/           # Comandos e utilidades do Discord
+├── db/            # Conexão com banco e modelos de dados
+├── services/      # Lógica de negócios (monitoramento, alertas)
+└── index.ts       # Ponto de entrada da aplicação
+```
+
+## 📊 Banco de Dados
+
+O sistema utiliza as seguintes tabelas:
+
+- **branch**: Informações das filiais (nome, número, IPs)
+- **technician**: Dados dos técnicos responsáveis
+- **technician_range**: Intervalos de responsabilidade
+- **downtime**: Registro de períodos de inatividade
+- **manager**: Informações de contato dos gerentes de filial
+
+## 🔒 Segurança
+
+- Credenciais armazenadas em variáveis de ambiente
+- Conexão SSL com PostgreSQL
+- Permissões Discord limitadas ao necessário
+
+## 📝 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 👥 Contribuição
+
+Contribuições são bem-vindas! Por favor, siga os passos:
+
+1. Faça um fork do projeto
+2. Crie sua branch de feature (`git checkout -b feature/amazing-feature`)
+3. Commit suas alterações (`git commit -m 'Add some amazing feature'`)
+4. Push para a branch (`git push origin feature/amazing-feature`)
+5. Abra um Pull Request
+
+## 📬 Contato
+
+Paulo Felipe Borszcz - [@paulofborszcz](https://github.com/paulofborszcz)
+
+Link do projeto: [https://github.com/seu-usuario/monitor-bot](https://github.com/seu-usuario/monitor-bot)
