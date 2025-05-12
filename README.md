@@ -114,10 +114,6 @@ O sistema utiliza as seguintes tabelas:
 - Conexão SSL com PostgreSQL
 - Permissões Discord limitadas ao necessário
 
-## 📝 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
 ## 👥 Contribuição
 
 Contribuições são bem-vindas! Por favor, siga os passos:
@@ -130,6 +126,6 @@ Contribuições são bem-vindas! Por favor, siga os passos:
 
 ## 📬 Contato
 
-Paulo Felipe Borszcz - [@paulofborszcz](https://github.com/paulofborszcz)
+Paulo Felipe Borszcz - [@Paulo-Borszcz](https://github.com/Paulo-Borszcz/)
 
-Link do projeto: [https://github.com/seu-usuario/monitor-bot](https://github.com/seu-usuario/monitor-bot)
+Link do projeto: [https://github.com/seu-usuario/monitor-bot](https://github.com/Paulo-Borszcz/monet)
